@@ -1,16 +1,19 @@
+extern crate wasm_bindgen;
+
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen(module = "../lib/domUtils")]
 extern {
-    fn appendToBody(x: u32);
+    fn appendToBody(s: &str);
 }
 
-#[no_mangle]
+#[wasm_bindgen]
 pub extern fn run() {
-    unsafe{
-      appendToBody(42)
-    }
+    appendToBody("Hello There");
+    appendToBody("General Kenobi!");
 }
 
-#[no_mangle]
+#[wasm_bindgen]
 pub extern fn add_one(x: u32) -> u32 {
     x + 1
 }
-

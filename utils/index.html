@@ -1,21 +1,6 @@
 <DOCTYPE html>
 <html>
   <head>
-      <script> 
-      const appendToBody = item => {
-        const text = document.createTextNode(item);
-        document.body.appendChild(text);
-      };
-      const importObject = {
-          env: {
-            appendToBody
-          } 
-      }
-      WebAssembly.instantiateStreaming(fetch('utils.gc.wasm'), importObject).then(wasmModule => {
-          console.log(wasmModule.instance.exports)
-        wasmModule.instance.exports.run();
-        return;
-      });
-      </script>
+      <script src='./index.js'></script
   </head>
 </html>

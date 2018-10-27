@@ -5,3 +5,6 @@ utils.gc.wasm
 utils.d.ts
 utils.js
 utils_bg.wasm
+dist
+pkg
+bin
