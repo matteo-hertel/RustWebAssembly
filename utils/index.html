@@ -2,15 +2,20 @@
 <html>
   <head>
       <script> 
-     fetch('utils.gc.wasm')
-         .then(response => response.arrayBuffer())
-         .then(result => WebAssembly.instantiate(result))
-         .then(wasmModule => {
-             const result = wasmModule.instance.exports.add_one(2);
-             const text = document.createTextNode(result);
-             document.body.appendChild(text);
-            return;
-         })
+      const appendToBody = item => {
+        const text = document.createTextNode(item);
+        document.body.appendChild(text);
+      };
+      const importObject = {
+          env: {
+            appendToBody
+          } 
+      }
+      WebAssembly.instantiateStreaming(fetch('utils.gc.wasm'), importObject).then(wasmModule => {
+          console.log(wasmModule.instance.exports)
+        wasmModule.instance.exports.run();
+        return;
+      });
       </script>
   </head>
 </html>
