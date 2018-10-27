@@ -5,11 +5,12 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen(module = "../lib/domUtils")]
 extern {
     fn appendToBody(s: &str);
+    fn appendImage(s: &str);
 }
 
 #[wasm_bindgen]
 pub extern fn run() {
-    appendToBody("Hello There");
+    appendImage("https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif");
     appendToBody("General Kenobi!");
 }
 
