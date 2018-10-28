@@ -1,7 +1,9 @@
+import * as wasmModule from '../crate/pkg';
 import {memory} from '../crate/pkg/rust_webpack_bg';
 import {Image} from '../crate/pkg/rust_webpack';
 
 console.log(memory);
+wasmModule.run();
 
 const image = Image.new();
 const pixelPointer = image.pixels_ptr();

@@ -1,7 +1,9 @@
 #[macro_use]
 extern crate cfg_if;
 
+extern crate js_sys;
 extern crate wasm_bindgen;
+
 use wasm_bindgen::prelude::*;
 
 cfg_if! {
@@ -62,8 +64,15 @@ macro_rules! log {
 pub fn run() {
     //    let img = document.createElement("img");
     //    img.set_src("https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif");
+    let now = js_sys::Date::now();
+    let now_date = js_sys::Date::new(&JsValue::from_f64(now));
     let val = document.createElement("p");
-    val.set_inner_html("Hello from Rust, WebAssembly, and Webpack!");
+    val.set_inner_html(&format!(
+        "Hello from Rust, it's {}:{}:{}!",
+        now_date.get_hours(),
+        now_date.get_minutes(),
+        now_date.get_seconds()
+    ));
     document.body().append_child(val);
     log!("{} is the word", "bird");
     //   document.body().append_child(img);
@@ -94,9 +103,7 @@ impl Image {
             blue: 0,
         };
         let pixels = vec![color1, color2];
-        Image {
-            pixels
-        }
+        Image { pixels }
     }
 
     pub fn pixels_ptr(&self) -> *const Color {

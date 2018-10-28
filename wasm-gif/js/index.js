@@ -1,3 +1,3 @@
-import('./app').then(() => {
+import('./app').then(wasmModule => {
   console.log('loaded');
 });
