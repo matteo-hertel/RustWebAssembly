@@ -1,0 +1,16 @@
+{
+  "name": "node-rust",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --experimental-modules --loader @wasm-tool/node index.mjs",
+    "build": "cd crate && cargo build --target wasm32-unknown-unknown --release"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wasm-tool/node": "0.0.4"
+  }
+}
