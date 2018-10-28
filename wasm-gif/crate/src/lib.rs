@@ -60,11 +60,46 @@ macro_rules! log {
 // Called by our JS entry point to run the example
 #[wasm_bindgen]
 pub fn run() {
-//    let img = document.createElement("img");
-//    img.set_src("https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif");
+    //    let img = document.createElement("img");
+    //    img.set_src("https://media.giphy.com/media/Nx0rz3jtxtEre/giphy.gif");
     let val = document.createElement("p");
     val.set_inner_html("Hello from Rust, WebAssembly, and Webpack!");
     document.body().append_child(val);
     log!("{} is the word", "bird");
-//   document.body().append_child(img);
+    //   document.body().append_child(img);
+}
+#[wasm_bindgen]
+pub struct Color {
+    red: u8,
+    green: u8,
+    blue: u8,
+}
+
+#[wasm_bindgen]
+pub struct Image {
+    pixels: Vec<Color>,
+}
+
+#[wasm_bindgen]
+impl Image {
+    pub fn new() -> Image {
+        let color1 = Color {
+            red: 0,
+            green: 255,
+            blue: 0,
+        };
+        let color2 = Color {
+            red: 0,
+            green: 0,
+            blue: 0,
+        };
+        let pixels = vec![color1, color2];
+        Image {
+            pixels
+        }
+    }
+
+    pub fn pixels_ptr(&self) -> *const Color {
+        self.pixels.as_ptr()
+    }
 }
